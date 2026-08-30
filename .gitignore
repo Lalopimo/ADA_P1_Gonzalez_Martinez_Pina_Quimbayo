@@ -1,0 +1,5 @@
+.DS_Store
+src/.DS_Store
+ada_p1
+main.exe
+*.o
