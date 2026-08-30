@@ -1,5 +1,7 @@
 .DS_Store
 src/.DS_Store
-ada_p1
-main.exe
+*.exe
 *.o
+ada_p1
+test_bt
+verificar_semilla
