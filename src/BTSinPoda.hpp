@@ -1,24 +1,24 @@
-#ifndef BACKTRACKING_HPP
-#define BACKTRACKING_HPP
+#ifndef BTSINPODA_HPP
+#define BTSINPODA_HPP
 
 #include <string>
 using namespace std;
 
-class BacktrackerConPoda {
+class BacktrackerSinPoda {
 public:
-    BacktrackerConPoda(int n, int minLower, int minUpper, int minDigit, int minSymbol);
+    BacktrackerSinPoda(int n, int minLower, int minUpper, int minDigit, int minSymbol);
     void ejecutar();
-
+    
 private:
     int usadoLower = 0, usadoUpper = 0, usadoDigit = 0, usadoSymbol = 0;
     int contraseñasGeneradas = 0, nodosGenerados = 0, nodosVisitados = 0, nodosPodados = 0;
     const string alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%";
     int n, minLower, minUpper, minDigit, minSymbol;
-
     void backtrack(string candidato);
-    bool esFactible(const string& candidato);
     void agregarContadores(char c);
     void quitarContadores(char c);
+    bool verificarRepetidos(string candidato);
 };
 
-#endif // !BACKTRACKING_HPP
+#endif // !BTSINPODA_HPP
+

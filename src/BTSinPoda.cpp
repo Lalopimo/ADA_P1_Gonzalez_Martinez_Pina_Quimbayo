@@ -1,40 +1,42 @@
-#include "backtracking.hpp"
+#include "BTSinPoda.hpp"
 #include <iostream>
-#include <chrono>
 using namespace std;
 
-BacktrackerConPoda::BacktrackerConPoda(int n_, int minLower_, int minUpper_, int minDigit_, int minSymbol_)
+BacktrackerSinPoda::BacktrackerSinPoda(int n_, int minLower_, int minUpper_, int minDigit_, int minSymbol_)
 : n(n_), minLower(minLower_), minUpper(minUpper_), minDigit(minDigit_), minSymbol(minSymbol_) {}
 
-void BacktrackerConPoda::ejecutar(){
+void BacktrackerSinPoda::ejecutar(){
     auto inicio = chrono::steady_clock::now();
     backtrack("");
     auto fin = chrono::steady_clock::now();
     auto tiempoEjecucion = chrono::duration_cast<chrono::milliseconds>(fin - inicio);
-
+    
     cout << "Contraseñas Generadas: " << contraseñasGeneradas<< endl;
     cout << "Nodos generados: " << nodosGenerados << endl;
-    cout << "Nodos visitados: " << nodosVisitados << endl;
-    cout << "Nodos podados: " << nodosPodados<< endl;
     cout << "Tiempo transcurrido: " << tiempoEjecucion.count() << " ms" << endl;
+    
 }
 
-void BacktrackerConPoda::backtrack(string candidato){
+void BacktrackerSinPoda::backtrack(string candidato){
+    
     nodosGenerados = nodosGenerados + 1;
-    
-    if (esFactible(candidato) == false) {
-        nodosPodados = nodosPodados + 1;
-        return;
-    }
-    
+    /*
+     if (esFactible(candidato) == false) {
+     nodosPodados = nodosPodados + 1;
+     return;
+     }
+     */
     nodosVisitados = nodosVisitados + 1;
-    
-    if (candidato.length() == n && usadoLower >= minLower && usadoUpper >= minUpper && usadoDigit >= minDigit && usadoSymbol >= minSymbol) {
-        
-        cout << candidato << endl;
-        
-        contraseñasGeneradas = contraseñasGeneradas + 1;
-        
+    if (candidato.length() == n ){
+        if (usadoLower >= minLower && usadoUpper >= minUpper && usadoDigit >= minDigit && usadoSymbol >= minSymbol) {
+            if (verificarRepetidos(candidato) == true){
+                cout << candidato << endl;
+                
+                contraseñasGeneradas = contraseñasGeneradas + 1;
+                
+                return;
+            }
+        }
         return;
     }
     
@@ -51,24 +53,7 @@ void BacktrackerConPoda::backtrack(string candidato){
     }
 }
 
-bool BacktrackerConPoda::esFactible(const string& candidato){
-    if (candidato.length() >= 2) {
-        if (candidato[candidato.length() - 2] == candidato[candidato.length() - 1]) {
-            
-            return false;
-        }
-    }
-    
-    int faltanteTotal = max(0, minLower - usadoLower) + max(0, minUpper - usadoUpper) + max(0, minDigit - usadoDigit) + max(0, minSymbol - usadoSymbol);
-    
-    if (n - candidato.length()< faltanteTotal) {
-        return false;
-    }
-    
-    return true;
-}
-
-void BacktrackerConPoda::agregarContadores(char c){
+void BacktrackerSinPoda::agregarContadores(char c){
     if (c == 'x' || c == 'a' || c == 'w' || c == 'b' || c == 'v' || c == 'c' || c == 'u' || c == 'd' || c == 't' || c == 'e' || c == 's' || c == 'f' || c == 'r' || c == 'g' || c == 'h' || c == 'q' || c == 'i' || c == 'p' || c == 'j' || c == 'o' || c == 'k' || c == 'l' || c == 'n' || c == 'm' || c == 'z' || c == 'y') {
         usadoLower = usadoLower + 1;
     } else if (c == 'A' || c == 'B' || c == 'Z' || c == 'C' || c == 'Y' || c == 'D' || c == 'X' || c == 'E' || c == 'W' || c == 'F' || c == 'V' || c == 'G' || c == 'U' || c == 'H' || c == 'T' || c == 'I' || c == 'S' || c == 'J' || c == 'R' || c == 'K' || c == 'Q' || c == 'L' || c == 'P' || c == 'M' || c == 'O' || c == 'N'){
@@ -80,7 +65,7 @@ void BacktrackerConPoda::agregarContadores(char c){
     }
 }
     
-void BacktrackerConPoda::quitarContadores(char c){
+void BacktrackerSinPoda::quitarContadores(char c){
     if (c == 'x' || c == 'a' || c == 'w' || c == 'b' || c == 'v' || c == 'c' || c == 'u' || c == 'd' || c == 't' || c == 'e' || c == 's' || c == 'f' || c == 'r' || c == 'g' || c == 'h' || c == 'q' || c == 'i' || c == 'p' || c == 'j' || c == 'o' || c == 'k' || c == 'l' || c == 'n' || c == 'm' || c == 'z' || c == 'y') {
         usadoLower = usadoLower - 1;
     } else if (c == 'A' || c == 'B' || c == 'Z' || c == 'C' || c == 'Y' || c == 'D' || c == 'X' || c == 'E' || c == 'W' || c == 'F' || c == 'V' || c == 'G' || c == 'U' || c == 'H' || c == 'T' || c == 'I' || c == 'S' || c == 'J' || c == 'R' || c == 'K' || c == 'Q' || c == 'L' || c == 'P' || c == 'M' || c == 'O' || c == 'N'){
@@ -90,4 +75,13 @@ void BacktrackerConPoda::quitarContadores(char c){
     } else if (c == '!' || c == '@' || c == '#' || c == '$' || c == '%'){
         usadoSymbol = usadoSymbol - 1;
     }
+}
+    
+bool BacktrackerSinPoda::verificarRepetidos(string candidato){
+    for (int i=1; i < n; i ++){
+        if (candidato[i] == candidato[i-1]){
+            return false;
+        }
+    }
+    return true;
 }
