@@ -1,0 +1,52 @@
+gonzalezmartinezpiñaquimbayo
+
+g = 103
+o = 111
+n = 110
+z = 122
+a = 97
+l = 108
+e = 101
+z = 122
+m = 109
+a ‎ = 97
+r  = 114
+t = 116
+i = 105
+n =  110
+e = 101
+z =122
+p = 112
+i = 105
+n = 110
+a = 97
+q = 113
+u = 117
+i ‎ = 105
+m = 109
+b = 98 
+a ‎ = 97
+y = 121
+o = 111
+
+103 + 111 + 110 + 122 + 97 + 108 + 101 + 122 + 109 + 97 + 114 + 116 + 105 + 110 + 101 + 122 + 112 + 105 + 110 + 97 + 113 + 117 + 105 + 109 + 98 + 97 + 121 + 111 ‎ = 3,043
+
+Semilla: 3043
+
+3043 % 3 ‎ = 1
+
+3043 % 2 ‎ = 1
+
+minLower = 2 + (semilla mod 3) 
+minLower = 3
+
+minUpper = 1 + (semilla mod 2) 
+minUpper = 2
+
+minDigit = 1 + (semilla mod 3) 
+minDigit = 2
+
+minSymbol = 1
+
+minLower(3) + minUpper(2) + minDigit(2) + minSymbol(1) = 8 
+n ≤ 8
