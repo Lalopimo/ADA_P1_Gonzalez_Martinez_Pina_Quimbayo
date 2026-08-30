@@ -8,6 +8,8 @@ class BacktrackerSinPoda {
 public:
     BacktrackerSinPoda(int n, int minLower, int minUpper, int minDigit, int minSymbol);
     void ejecutar();
+    int getContrasenasGeneradas() const { return contraseñasGeneradas; }
+    int getNodosGenerados() const { return nodosGenerados; }
     
 private:
     int usadoLower = 0, usadoUpper = 0, usadoDigit = 0, usadoSymbol = 0;
