@@ -84,9 +84,7 @@ PROCEDIMIENTO BACKTRACKING(candidato, longitudObjetivo)
 
         BACKTRACKING(candidato, longitudObjetivo)
 
-         //  aquí se hace el RETROCESO (NO SE SI SE HACE ASI)
-
-          candidato.pop()
+          candidato.pop_back()
 
            QUITAR_CONTADORES(caracter)
 
@@ -97,7 +95,7 @@ FIN PROCEDIMIENTO
 
 
 
-PROCEDIEMIENTO ES_FACTIBLE(candidato, longitudObjetivo)
+PROCEDIMIENTO ES_FACTIBLE(candidato, longitudObjetivo)
     
     SI tamaño(candidato) >= 2  ENTONCES 
  
