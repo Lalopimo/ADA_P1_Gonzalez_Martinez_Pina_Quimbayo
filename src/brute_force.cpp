@@ -1,6 +1,9 @@
 #include "brute_force.hpp"
 #include "third_party/picosha2.h"
 #include <chrono>
+#include <fstream>
+#include <string>
+
 
 namespace BruteForce {
 
@@ -34,7 +37,7 @@ namespace BruteForce {
 
                 auto end = std::chrono::high_resolution_clock::now();
 
-                time = std::chrono::duration<double>(
+                time = std::chrono::duration<double,std::milli>(
                     end - start
                 ).count();
 
@@ -46,13 +49,43 @@ namespace BruteForce {
 
         auto end = std::chrono::high_resolution_clock::now();
 
-        time = std::chrono::duration<double>(
+        time = std::chrono::duration<double,std::milli>(
             end - start
         ).count();
 
         return "";
     }
+std::string Algorithm ::dictionaryAttack(std::string targetHash,
+        std::string pathDictionary){
+            candidates=0;
+            isFound=false;
+            time=0.0;
+            auto start = std::chrono::high_resolution_clock::now();
+            std::fstream file(pathDictionary);
+          std::string world;
+          while(std::getline(file,world)){
+            std::string actual_hash;
+            picosha2::hash256_hex_string(world,actual_hash);
 
+            if(actual_hash==targetHash){
+              isFound=true;
+              auto end=std::chrono::high_resolution_clock::now();
+              time=time = std::chrono::duration<double,std::milli>(
+                    end - start
+                ).count();
+
+                return world;
+              
+            }
+          }
+        file.close();
+        auto end=std::chrono::high_resolution_clock::now();
+         time=time = std::chrono::duration<double,std::milli>(
+                    end - start
+                ).count();
+        return "";
+        }
+        
 
     std::string Algorithm::generateCandidates(
         std::string targetHash,

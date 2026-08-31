@@ -31,6 +31,10 @@ namespace BruteForce {
             int maxLength
         );
 
+        std::string dictionaryAttack(
+        std::string targetHash,
+        std::string pathDictionary);        
+
         unsigned int getCandidates();
         double getTime();
 
