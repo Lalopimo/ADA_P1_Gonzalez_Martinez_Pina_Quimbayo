@@ -14,6 +14,7 @@ void BacktrackerSinPoda::ejecutar(){
     cout << "Contraseñas Generadas: " << contraseñasGeneradas<< endl;
     cout << "Nodos generados: " << nodosGenerados << endl;
     cout << "Tiempo transcurrido: " << tiempoEjecucion.count() << " ms" << endl;
+    tiempoMs = tiempoEjecucion.count();
     
 }
 

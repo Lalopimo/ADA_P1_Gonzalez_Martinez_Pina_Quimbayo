@@ -17,6 +17,7 @@ void BacktrackerConPoda::ejecutar(){
     cout << "Nodos visitados: " << nodosVisitados << endl;
     cout << "Nodos podados: " << nodosPodados<< endl;
     cout << "Tiempo transcurrido: " << tiempoEjecucion.count() << " ms" << endl;
+    tiempoMs = tiempoEjecucion.count();
 }
 
 void BacktrackerConPoda::backtrack(string candidato){

@@ -10,10 +10,12 @@ public:
     void ejecutar();
     int getContrasenasGeneradas() const { return contraseñasGeneradas; }
     int getNodosGenerados() const { return nodosGenerados; }
+    double getTiempoMs() const { return tiempoMs; }
     
 private:
     int usadoLower = 0, usadoUpper = 0, usadoDigit = 0, usadoSymbol = 0;
     int contraseñasGeneradas = 0, nodosGenerados = 0, nodosVisitados = 0, nodosPodados = 0;
+    double tiempoMs = 0;
     const string alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%";
     int n, minLower, minUpper, minDigit, minSymbol;
     void backtrack(string candidato);
